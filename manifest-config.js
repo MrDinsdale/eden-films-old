@@ -1,11 +1,9 @@
-const colors = require('./colors');
-
 module.exports = {
-  name: 'Mate Gatsby Starter',
-  short_name: 'Mate Gatsby Starter',
+  name: 'Eden Films',
+  short_name: 'Eden Films',
   start_url: '/',
-  background_color: colors.background,
-  theme_color: colors.primary,
+  background_color: '#111',
+  theme_color: '#eee',
   display: 'minimal-ui',
-  icon: 'media/icon.png',
+  icon: 'media/logo.png',
 };

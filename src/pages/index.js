@@ -1,21 +1,42 @@
 import React from 'react';
-import Layout from '../components/Layout';
-import Landing from '../sections/Landing';
-import About from '../sections/About';
-import Projects from '../sections/Projects';
-import Writing from '../sections/Writing';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { StaticQuery, graphql } from 'gatsby';
+import { Flex } from 'rebass';
+
+import { Layout } from '../components/Layout';
+import { FilmList } from '../sections/film-list';
+import { Container } from '../components/Container';
 
 const IndexPage = () => (
-  <Layout>
-    <Header />
-    <Landing />
-    <About />
-    <Projects />
-    <Writing />
-    <Footer />
-  </Layout>
+  <StaticQuery
+    query={graphql`
+      query WelcomeQuery {
+        contentfulWelcome {
+          title
+          welcomeTitle
+          welcomeBody {
+            welcomeBody
+          }
+        }
+      }
+    `}
+    render={data => {
+      const {
+        title,
+        welcomeBody: { welcomeBody },
+      } = data.contentfulWelcome;
+      return (
+        <Layout>
+          <Container px="3" pb="4">
+            <Flex flexDirection="column">
+              <h1>{title}</h1>
+              <p>{welcomeBody}</p>
+            </Flex>
+          </Container>
+          <FilmList />
+        </Layout>
+      );
+    }}
+  />
 );
 
 export default IndexPage;

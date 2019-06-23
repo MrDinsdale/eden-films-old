@@ -1,45 +1,35 @@
-import React, { Fragment } from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import PropTypes from 'prop-types';
-import { ScrollingProvider } from 'react-scroll-section';
-import 'react-tippy/dist/tippy.css';
-import config from 'react-reveal/globals';
-import colors from '../../colors';
-import Helmet from './Helmet';
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+
+import { Header } from './Header';
+import { Helmet } from './Helmet';
+import { colors } from '../constants/.';
 
 const GlobalStyle = createGlobalStyle`
 *,
 *::after,
-*::before { 
+*::before {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
   }
 
 body {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  background: ${colors.greyDark};
   margin: 0;
-  font-family: Cabin;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+  color: ${colors.cream};
   overflow-x: hidden;
 }
 `;
 
-config({ ssrFadeout: true });
-
-const Layout = ({ children }) => (
-  <Fragment>
+export const Layout = ({ children }) => (
+  <div>
     <GlobalStyle />
-    <ThemeProvider theme={{ colors }}>
-      <ScrollingProvider>
-        <Helmet />
-        {children}
-      </ScrollingProvider>
-    </ThemeProvider>
-  </Fragment>
+    <Header />
+    <Helmet />
+    {children}
+  </div>
 );
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default Layout;

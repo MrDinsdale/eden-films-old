@@ -21,7 +21,7 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-google-fonts',
     options: {
-      fonts: ['cabin', 'Open Sans'],
+      fonts: ['Six Caps', `Open Sans Condensed\:300,700`],
     },
   },
   {
@@ -36,15 +36,6 @@ const plugins = [
 ];
 
 module.exports = client.getEntries().then(entries => {
-  const { mediumUser } = entries.items.find(getAboutEntry).fields;
-
-  plugins.push({
-    resolve: 'gatsby-source-medium',
-    options: {
-      username: mediumUser || '@medium',
-    },
-  });
-
   if (ANALYTICS_ID) {
     plugins.push({
       resolve: 'gatsby-plugin-google-analytics',
@@ -55,9 +46,6 @@ module.exports = client.getEntries().then(entries => {
   }
 
   return {
-    siteMetadata: {
-      isMediumUserDefined: !!mediumUser,
-    },
     plugins,
   };
 });
