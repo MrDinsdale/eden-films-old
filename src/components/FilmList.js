@@ -5,7 +5,7 @@ import { Flex, Box } from 'rebass';
 import { FilmTile } from '../components/FilmTile';
 
 export const FilmList = () => (
-  <Flex>
+  <Flex flexWrap="wrap">
     <StaticQuery
       query={graphql`
         query FilmListQuery {
@@ -35,7 +35,7 @@ export const FilmList = () => (
         const { films = [] } = data.contentfulFilmList;
 
         return films.map(film => (
-          <Box width={1 / 2}>
+          <Box width={[1, 1, 1 / 2]}>
             <FilmTile
               key={film.id}
               title={film.title}

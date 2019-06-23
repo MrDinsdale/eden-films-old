@@ -4,10 +4,9 @@ import { Flex } from 'rebass';
 
 import { Logo } from './Logo';
 import { Container } from './Container';
-import { colors } from '../constants/.';
 
 const HeaderContainer = styled.header`
-  background-color: ${colors.black};
+  background-color: ${({ theme }) => theme.colors.black};
   height: 80px;
 `;
 

@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text } from 'rebass';
-import { colors } from '../constants/.';
 
 const List = styled.ul`
   margin: 0;
@@ -10,14 +8,15 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  color: ${colors.greyLight};
+  color: ${({ theme }) => theme.colors.greyLight};
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 10px;
   list-style: none;
 `;
 
 const Name = styled.span`
-  color: ${colors.cream};
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 20px;
+  color: ${({ theme }) => theme.colors.cream};
+  font-size: 18px;
   font-weight: 300;
   letter-spacing: -0.8px;
   text-transform: uppercase;

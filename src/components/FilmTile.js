@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { Heading, Image } from 'rebass';
 
 import { Credits } from './Credits';
-import { colors } from '../constants/colors';
 
 const FilmTileCredits = styled(Credits)`
   max-height: 0;
   overflow: hidden;
-  transition: 0.8s ease 0.2s;
+  transition: 0.6s ease;
 `;
 
 const TileImage = styled(Image)`
@@ -19,7 +18,7 @@ const TileImage = styled(Image)`
   position: absolute;
   text-transform: uppercase;
   top: 0;
-  transition: 1s ease;
+  transition: 0.6s ease;
   width: 100%;
 `;
 
@@ -32,23 +31,32 @@ const FilmTileInner = styled.div`
   padding: 1em;
   z-index: 1;
 
-  &::before {
-    background-image: radial-gradient(
-      rgba(0, 0, 0, 0.8) 40%,
-      rgba(0, 0, 0, 0.4) 100%
-    );
-    background-size: 100%;
-    background-position: center;
+  &::before,
+  &::after {
     content: '';
     display: block;
     height: 100%;
     left: 0;
-    opacity: 0.6;
     position: absolute;
     top: 0;
-    transition: 1s ease;
     width: 100%;
+  }
+
+  &::before {
+    background-image: radial-gradient(
+      rgba(0, 0, 0, 0.4) 40%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    background-size: 100%;
+    background-position: center;
+    transition: 0.6s ease;
     z-index: -1;
+  }
+
+  &::after {
+    border-bottom: 0 solid ${({ theme }) => theme.colors.black};
+    border-top: 0 solid ${({ theme }) => theme.colors.black};
+    transition: 0.4s ease 0.1s;
   }
 `;
 
@@ -59,10 +67,10 @@ const FilmTitle = styled(Heading)`
 
 const FilmTileOuter = styled.button`
   align-items: stretch;
-  background-color: ${colors.black};
+  background-color: ${({ theme }) => theme.colors.greyDark};
   box-shadow: none !important;
   border: 0;
-  color: ${colors.cream};
+  color: ${({ theme }) => theme.colors.cream};
   cursor: pointer;
   display: flex;
   outline: 0;
@@ -72,15 +80,16 @@ const FilmTileOuter = styled.button`
   width: 100%;
 
   &:hover ${TileImage}, &:focus ${TileImage} {
-    filter: blur(16px);
+    filter: saturate(0) brightness(80%) blur(4px);
   }
 
   &:hover ${FilmTileCredits}, &:focus ${FilmTileCredits} {
-    max-height: 100%;
+    max-height: 10em;
   }
 
-  &:hover ${FilmTileInner}::before, &:focus ${FilmTileInner}::before {
-    opacity: 1;
+  &:hover ${FilmTileInner}::after, &:focus ${FilmTileInner}::after {
+    border-bottom-width: 80px;
+    border-top-width: 80px;
   }
 `;
 

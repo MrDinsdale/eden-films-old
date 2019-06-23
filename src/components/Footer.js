@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { Flex } from 'rebass';
 
 const FooterContainer = styled.footer`
-  padding: 1em;
+  background-color: ${({ theme }) => theme.colors.greyDark};
   align-items: center;
+  padding: 1em;
 `;
 
 export const Footer = () => (
