@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Heading, Image } from 'rebass';
+import { Image } from 'rebass';
 
-import { Credits } from './Credits';
+import { Credits } from '../Credits/.';
+import { FilmTitle } from './_atoms/FilmTitle';
 
 const FilmTileCredits = styled(Credits)`
   max-height: 0;
@@ -60,12 +61,7 @@ const FilmTileInner = styled.div`
   }
 `;
 
-const FilmTitle = styled(Heading)`
-  font-family: 'Six Caps', sans-serif;
-  text-transform: uppercase;
-`;
-
-const FilmTileOuter = styled.button`
+const FilmTileCard = styled.button`
   align-items: stretch;
   background-color: ${({ theme }) => theme.colors.greyDark};
   box-shadow: none !important;
@@ -78,6 +74,11 @@ const FilmTileOuter = styled.button`
   position: relative;
   min-height: 450px;
   width: 100%;
+
+  &:hover,
+  &:focus {
+    background: ${({ theme }) => theme.colors.black};
+  }
 
   &:hover ${TileImage}, &:focus ${TileImage} {
     filter: saturate(0) brightness(80%) blur(4px);
@@ -101,14 +102,14 @@ export const FilmTile = ({
   },
 }) => {
   return (
-    <FilmTileOuter onClick={() => console.log(`Clicked ${title}`)}>
+    <FilmTileCard onClick={() => console.log(`Clicked ${title}`)}>
       <TileImage src={src} />
       <FilmTileInner>
-        <FilmTitle fontSize={[7]} letterSpacing="2px">
+        <FilmTitle as="h2" fontSize={[4, 5]} letterSpacing={[4, 5]}>
           {title}
         </FilmTitle>
         <FilmTileCredits credits={credits} align="right" />
       </FilmTileInner>
-    </FilmTileOuter>
+    </FilmTileCard>
   );
 };

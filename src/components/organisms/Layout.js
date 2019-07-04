@@ -1,8 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-import { Header } from './Header';
-import { Helmet } from './Helmet';
+import { Header, Footer } from '../molecules';
+import { Helmet } from '../Helmet';
 
 const GlobalStyle = createGlobalStyle`
 *,
@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 *::before {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
-  }
+}
 
 body {
   -webkit-box-sizing: border-box;
@@ -31,6 +31,7 @@ export const Layout = ({ children }) => {
       <Header />
       <Helmet />
       {children}
+      <Footer />
     </div>
   );
 };

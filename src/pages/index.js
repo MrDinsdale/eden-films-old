@@ -1,13 +1,10 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
-import { Flex } from 'rebass';
 
-import { Layout } from '../components/Layout';
-import { FilmList } from '../components/FilmList';
-import { Container } from '../components/Container';
+import { FilmList, Layout } from '../components/organisms/.';
+import { Container } from '../components/atoms/.';
 import theme from '../constants/theme';
-import GlobalStyles from '../constants/GlobalStyles';
 
 const IndexPage = () => (
   <ThemeProvider theme={theme}>
@@ -16,10 +13,6 @@ const IndexPage = () => (
         query WelcomeQuery {
           contentfulWelcome {
             title
-            welcomeTitle
-            welcomeBody {
-              welcomeBody
-            }
             filmList {
               films {
                 id
@@ -44,19 +37,11 @@ const IndexPage = () => (
       `}
       render={data => {
         const {
-          title,
-          welcomeBody: { welcomeBody },
-          filmList,
+          filmList: { films },
         } = data.contentfulWelcome;
         return (
           <Layout>
-            <Container px="3" pb="4">
-              <Flex flexDirection="column">
-                <h1>{title}</h1>
-                <p>{welcomeBody}</p>
-              </Flex>
-            </Container>
-            {filmList && <FilmList films={filmList} />}
+            <Container>{films && <FilmList films={films} />}</Container>
           </Layout>
         );
       }}
